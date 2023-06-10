@@ -37,10 +37,14 @@ ol {
 	flex-direction: column;
 }
 #searchDiv {
-	column-gap: 1rem;
+	row-gap: 0.5rem;
+	column-gap: 0.5rem;
 	margin: 1rem 0;
 }
-#go {
+#search {
+	width: 10rem;
+}
+#go,  #share {
 	width: 4rem;
 }
 #main {

@@ -1,0 +1,29 @@
+{
+	"headers": [
+		{
+			"source": "/(.*)",
+			"headers": [
+				{
+					"key": "X-Content-Type-Options",
+					"value": "nosniff"
+				},
+				{
+					"key": "X-Frame-Options",
+					"value": "DENY"
+				},
+				{
+					"key": "X-XSS-Protection",
+					"value": "1; mode=block"
+				},
+				{
+					"key": "Referrer-Policy",
+					"value": "no-referrer"
+				},
+				{
+					"key": "Content-Security-Policy",
+					"value": "default-src 'none'; script-src 'self'; connect-src 'self' https://api.dictionaryapi.dev; img-src 'self'; style-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; frame-src 'none'; font-src 'self';"
+				}
+			]
+		}
+	]
+}
