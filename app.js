@@ -25,12 +25,12 @@ async function getWord() {
 		.then(async resp => {
 			if (!resp.ok) {
 				console.log("Response not OK. Status code: " + resp.status);
-				tagline.innerHTML = (resp.status === 404) ? "Entered word not found." : "Unknown error occurred. Status code: " + resp.status;
+				tagline.innerText = (resp.status === 404) ? "Entered word not found." : "Unknown error occurred. Status code: " + resp.status;
 				return;
 			} 
 			await resp.json().then(json => {
 				data = json;
-				tagline.innerText = "<i>The bestest dictionary</i>";
+				tagline.innerHTML = "<i>The bestest dictionary</i>";
 			})
 		})
 	// escape function if request failed
