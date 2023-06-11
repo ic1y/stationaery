@@ -1,6 +1,7 @@
 const searchInput = document.getElementById("search");
 const goButton = document.getElementById("go");
 const shareButton = document.getElementById("share");
+const tagline = document.getElementById("tagline");
 
 // get url parameters
 const params = new URLSearchParams(document.location.search);
@@ -24,6 +25,7 @@ async function getWord() {
 		.then(async resp => {
 			if (!resp.ok) {
 				console.log("Response not OK. Status code: " + resp.status);
+				tagline.innerText = (resp.status === 404) ? "Entered word not found." : "Unknown error occurred. Status code: " + resp.status;
 				return;
 			} 
 			await resp.json().then(json => {

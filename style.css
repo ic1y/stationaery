@@ -54,3 +54,8 @@ ol {
 footer {
 	justify-content: flex-end;
 }
+@media screen and (prefers-color-scheme: dark) {
+	* {
+		color-scheme: dark;
+	}
+}
