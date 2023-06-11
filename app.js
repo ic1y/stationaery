@@ -20,19 +20,24 @@ shareButton.addEventListener("click", share);
 
 async function getWord() { 
 	searchInput.value = searchInput.value.trim();
+	if (searchInput.value.length === 0) return;
 	let data;
+	const startTime = Date.now();
 	await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + searchInput.value)
 		.then(async resp => {
 			if (!resp.ok) {
-				console.log("Response not OK. Status code: " + resp.status);
-				tagline.innerText = (resp.status === 404) ? "Entered word not found." : "Unknown error occurred. Status code: " + resp.status;
+				tagline.innerText = (resp.status === 404) ? "Entered word not found." : "Unknown status code: " + resp.status;
 				return;
-			} 
+			}
 			await resp.json().then(json => {
 				data = json;
-				tagline.innerHTML = "<i>The bestest dictionary</i>";
+				const timeElapsed = Date.now() - startTime;
+				tagline.innerText = "Word found in " + timeElapsed + " milliseconds!"
 			})
 		})
+		.catch(err => {
+			tagline.innerText = "Unknown error occurred. " + err;
+		});
 	// escape function if request failed
 	if (data === undefined) return;
 	console.log(data);
@@ -80,7 +85,7 @@ async function share() {
 	if (navigator.share) {
 		await navigator.share({
 				title: "Stationaery",
-				text: "The bestest dictionary",
+				// text: "The bestest dictionary", 
 				url: location.href,
 			})
 			.then(() => {
