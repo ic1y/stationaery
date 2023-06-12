@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head class="flex column">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Stationaery</title>
+	<title>History — Stationæry</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize-css/normalize.min.css">
+	<link rel="stylesheet" href="history.css">
 </head>
-<body>
-	<h1>History</h1>
-	<h2>🚧 This page is in the works. 🚧</h2>
+<body class="flex column">
+	<nav class="flex column">
+		<header class="flex column">
+			<h1>History</h1>
+			<span id="tagline" aria-live="polite"><i>The bestest dictionary</i></span>
+		</header>
+	</nav>
+	<main id="main" class="flex column">
+		<p>The words that you have searched will appear here. <a href="./index.html">To search, go back to homepage.</a></p>
+		<span>Your words searched (from newer to older):</span>
+	</main>	
+	<footer class="flex">
+		<span>Stationæry is <a href="https://gilbert.vercel.app/">made by Gilbert</a> and is <a href="https://github.com/ic1y/stationaery">open source</a>. Word data is sourced from Wiktionary.<span class="printonly"> Website URL: https://stationaery.vercel.app</span></span>
+	</footer>
+	<script src="history.js"></script>
 </body>
 </html>

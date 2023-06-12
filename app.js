@@ -82,7 +82,17 @@ async function getWord() {
 	// set url parameters to current word
 	const url = new URL(location);
 	url.searchParams.set("w", searchInput.value);
-	history.pushState({}, "", url);
+	window.history.pushState({}, "", url);
+	let hist = localStorage.getItem("hist");
+	if (hist === null) {
+		localStorage.setItem("hist", searchInput.value);
+	} else {
+		hist = hist.split(",");
+		if (!hist.includes(searchInput.value)) {
+			hist.unshift(searchInput.value);
+			localStorage.setItem("hist", hist.join(","));
+		}
+	}
 }
 
 async function share() {
