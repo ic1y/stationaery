@@ -45,7 +45,7 @@ async function getWord() {
 			await resp.json().then((json) => {
 				data = json;
 				const timeElapsed = Date.now() - startTime;
-				alertEl.innerText = "Word found in " + timeElapsed/1000 + " seconds!";
+				alertEl.innerText = "Word '"+ queryingWord + "' found in " + timeElapsed/1000 + " seconds!";
 			});
 		})
 		.catch((err) => {

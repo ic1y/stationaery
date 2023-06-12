@@ -79,7 +79,7 @@ footer {
 		min-height: 0;
 	}
 	.printonly {
-		display: block;
+		display: block !important;
 	}
 	a {
 		color: black;
