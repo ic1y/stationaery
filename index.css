@@ -1,4 +1,4 @@
-#searchDiv > a > svg {
+#searchDiv svg {
 	height: 1.5rem;
 	width: 1.5rem;
 }
@@ -9,7 +9,7 @@
 }
 button, #history, input {
 	appearance: none !important;
--webkit-appearance: none !important;
+	-webkit-appearance: none !important;
 	height: 2rem;
 	width: 2rem;
 	padding: 0.25rem;
