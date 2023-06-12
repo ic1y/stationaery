@@ -29,7 +29,7 @@ function getParams() {
 
 async function getWord() {
 	queryingWord = searchInput.value.trim();
-	if (queryingWord === 0) return;
+	if (queryingWord.length === 0) return;
 
 	let data;
 	const startTime = Date.now();
@@ -45,7 +45,7 @@ async function getWord() {
 			await resp.json().then((json) => {
 				data = json;
 				const timeElapsed = Date.now() - startTime;
-				alertEl.innerText = "Word found in " + timeElapsed + " milliseconds!";
+				alertEl.innerText = "Word found in " + timeElapsed/1000 + " seconds!";
 			});
 		})
 		.catch((err) => {
