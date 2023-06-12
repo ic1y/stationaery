@@ -30,11 +30,10 @@ function getParams() {
 async function getWord() {
 	queryingWord = searchInput.value.trim();
 	if (queryingWord === 0) return;
+
 	let data;
 	const startTime = Date.now();
-	await fetch(
-		"https://api.dictionaryapi.dev/api/v2/entries/en/" + queryingWord
-	)
+	await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + queryingWord)
 		.then(async (resp) => {
 			if (!resp.ok) {
 				alertEl.innerText =
@@ -53,15 +52,16 @@ async function getWord() {
 			alertEl.innerText = "Unknown error occurred. " + err;
 		});
 	
+	// escape function if request failed
+	if (data === undefined) return;
+
 	currentWord = queryingWord;
-	
+
 	// set url parameters to current word
 	const url = new URL(location);
 	url.searchParams.set("w", queryingWord);
 	window.history.pushState({}, "", url);
 
-	// escape function if request failed
-	if (data === undefined) return;
 	console.log(data);
 	const mainEl = document.querySelector("main");
 	mainEl.innerText = "";
