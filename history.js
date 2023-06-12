@@ -10,7 +10,7 @@ if (hist === null) {
 	for (word of hist) {
 		const li = document.createElement("li");
 		const a = document.createElement("a");
-		a.href = "./index.html" + word;
+		a.href = "./index.html?w=" + word;
 		a.innerText = word;
 		li.appendChild(a);
 		ul.appendChild(li);
