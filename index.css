@@ -8,7 +8,8 @@
 	margin: 0.5rem;
 }
 button, #history, input {
-	appearance: none;
+	appearance: none !important;
+-webkit-appearance: none !important;
 	height: 2rem;
 	width: 2rem;
 	border-radius: 4px;
