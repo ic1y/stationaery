@@ -1,4 +1,4 @@
-#searchDiv svg {
+#searchDiv > a > svg {
 	height: 1.5rem;
 	width: 1.5rem;
 }
@@ -11,6 +11,7 @@ button, #history, input {
 	appearance: none;
 	height: 2rem;
 	width: 2rem;
+	padding: 0.25rem;
 	border-radius: 4px;
 	display: flex;
 	justify-content: center;
