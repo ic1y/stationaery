@@ -2,6 +2,7 @@ const searchInput = document.getElementById("search");
 const goButton = document.getElementById("go");
 const shareButton = document.getElementById("share");
 const tagline = document.getElementById("tagline");
+const printButton = document.getElementById("print")
 
 // get url parameters
 const params = new URLSearchParams(document.location.search);
@@ -17,6 +18,9 @@ searchInput.addEventListener("keyup", (e) => {
 })
 goButton.addEventListener("click", getWord);
 shareButton.addEventListener("click", share);
+printButton.addEventListener("click", () => {
+	window.print();
+})
 
 async function getWord() { 
 	searchInput.value = searchInput.value.trim();

@@ -37,7 +37,7 @@ ol {
 .column {
 	flex-direction: column;
 }
-.hidden {
+.hidden, .printonly {
 	display: none;
 }
 #searchDiv {
@@ -45,7 +45,7 @@ ol {
 	column-gap: 0.5rem;
 	margin: 1rem 0;
 }
-#go,  #share, #history, #search {
+#go,  #share, #history, #search, #print {
 	appearance: none;
 	height: 2rem;
 	width: 4rem;
@@ -63,11 +63,13 @@ ol {
 	width: 10rem;
 }
 #main {
+	width: calc(100vw - 4rem);
 	max-width: 40rem;
 	align-items: flex-start;
 }
 footer {
 	justify-content: flex-end;
+	font-size: 0.875rem;
 }
 @media screen and (prefers-color-scheme: dark) {
 	* {
@@ -76,7 +78,7 @@ footer {
 	html {
 		background-color: #1c1b22;
 	}
-	#go, #share, #history, #search {
+	#go, #share, #history, #search, #print {
 		background-color: #2b2a33;
 		border-color: #8b8b90;
 	}
@@ -85,8 +87,11 @@ footer {
 	html {
 		background-color: #ffffff;
 	}
-	footer > span::after {
-		content: " Website URL: https://stationaery.vercel.app/";
+	html, body {
+		min-height: 0;
+	}
+	.printonly {
+		display: block;
 	}
 	#tagline, nav, #searchDiv {
 		display: none;
