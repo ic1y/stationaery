@@ -3,7 +3,7 @@ const goButton = document.getElementById("go");
 const shareButton = document.getElementById("share");
 const alertEl = document.getElementById("alertEl");
 const printButton = document.getElementById("print")
-const starButton = document.getElementById("star")
+// const starButton = document.getElementById("star");
 let queryingWord, currentWord;
 
 getParams();
@@ -20,7 +20,7 @@ function getParams() {
 	// get url parameters to find word
 	const params = new URLSearchParams(document.location.search);
 	const wordParam = params.get("w");
-	console.log(wordParam);
+	// console.log(wordParam);
 	if (wordParam != null) {
 		searchInput.value = wordParam;
 		getWord();
@@ -104,16 +104,12 @@ async function getWord() {
 		localStorage.setItem("hist", queryingWord);
 	} else {
 		hist = hist.split(",");
-		if (!hist.includes(queryingWord)) {
-			hist.unshift(queryingWord);
-			localStorage.setItem("hist", hist.join(","));
+		if (hist.includes(queryingWord)) {
+			hist.splice(hist.indexOf(queryingWord), 1);
 		}
+		hist.unshift(queryingWord);
+		localStorage.setItem("hist", hist.join(","));
 	}
-
-	starButton.classList.remove("hidden");
-	starButton.addEventListener("click", () => {
-		starButton.innerText = (starButton.innerText === "Star") ? "Unstar" : "Star";
-	})
 }
 
 async function share() {
