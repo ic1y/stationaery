@@ -1,0 +1,33 @@
+#searchDiv {
+	row-gap: 0.5rem;
+	column-gap: 0.5rem;
+	margin: 0.5rem;
+}
+#go,  #share, #history, #search, #print, #star {
+	appearance: none;
+	height: 2rem;
+	width: 4rem;
+	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: currentColor;
+	background-color: #e9e9ed;
+	border: 0.0625rem solid #7f7f7f;
+	text-decoration: none;
+}
+#search {
+	padding: 0.5rem;
+	width: 10rem;
+}
+@media screen and (prefers-color-scheme: dark) {
+	#go, #share, #history, #search, #print, #star {
+		background-color: #2b2a33;
+		border-color: #8b8b90;
+	}
+}
+@media print {
+	#alertEl, nav, #searchDiv {
+		display: none;
+	}
+}

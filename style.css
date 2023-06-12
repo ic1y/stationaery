@@ -1,9 +1,11 @@
 * {
 	box-sizing: border-box;
+	color: #000000;
 }
 html, body {
 	min-height: 100%;
 	min-width: 100%;
+
 }
 html{
 	background-color: #eeeeee;
@@ -25,8 +27,14 @@ h3 {
 h1, h2, h3 {
 	margin-left: 0;
 }
-ol {
+ol, ul {
 	margin: 1rem 0;
+}
+a {
+	color: #0066cc;
+}
+a:visited {
+	color: #71419d;
 }
 .flex {
 	display: flex;
@@ -38,29 +46,7 @@ ol {
 	flex-direction: column;
 }
 .hidden, .printonly {
-	display: none;
-}
-#searchDiv {
-	row-gap: 0.5rem;
-	column-gap: 0.5rem;
-	margin: 1rem 0;
-}
-#go,  #share, #history, #search, #print {
-	appearance: none;
-	height: 2rem;
-	width: 4rem;
-	border-radius: 4px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: currentColor;
-	background-color: #e9e9ed;
-	border: 0.0625rem solid #7f7f7f;
-	text-decoration: none;
-}
-#search {
-	padding: 0.5rem;
-	width: 10rem;
+	display: none !important;
 }
 #main {
 	width: calc(100vw - 4rem);
@@ -73,13 +59,16 @@ footer {
 @media screen and (prefers-color-scheme: dark) {
 	* {
 		color-scheme: dark;
+		color: #fbfbfe;
 	}
 	html {
 		background-color: #1c1b22;
 	}
-	#go, #share, #history, #search, #print {
-		background-color: #2b2a33;
-		border-color: #8b8b90;
+	a {
+		color: #8c8cff;
+	}
+	a:visited {
+		color: #ffadff;
 	}
 }
 @media print {
@@ -91,9 +80,6 @@ footer {
 	}
 	.printonly {
 		display: block;
-	}
-	#tagline, nav, #searchDiv {
-		display: none;
 	}
 	a {
 		color: black;

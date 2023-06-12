@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize-css/normalize.min.css">
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="index.css">
 	<title>Stationæry</title>
 	<meta name="description" content="The bestest dictionary">
 </head>
@@ -13,16 +14,17 @@
 	<nav class="flex column">
 		<header class="flex column">
 			<h1>Stationæry</h1>
-			<span class="printonly"><i>The bestest dictionary</i></span>
-			<span id="tagline" aria-live="polite"><i>The bestest dictionary</i></span>
+			<span><i>The bestest dictionary</i></span>
 		</header>
 		<div class="flex" id="searchDiv">
 			<input type="text" id="search" placeholder="Search Stationæry">
 			<button id="go">Search</button>
 			<button id="share">Share</button>
 			<button id="print">Print</button>
+			<button id="star" class="hidden">Star</button>
 			<a id="history" href="history.html">History</a>
 		</div>
+		<span id="alertEl" aria-live="polite"></span>
 	</nav>
 	<main id="main" class="flex column">
 		<p>Stationæry is a fast, light and lean e-dictionary for the Web. User-friendly, accessible, and print-friendly. Dark Mode is supported. History feature records words looked up.</p>

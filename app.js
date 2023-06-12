@@ -1,18 +1,12 @@
 const searchInput = document.getElementById("search");
 const goButton = document.getElementById("go");
 const shareButton = document.getElementById("share");
-const tagline = document.getElementById("tagline");
+const alertEl = document.getElementById("alertEl");
 const printButton = document.getElementById("print")
+const starButton = document.getElementById("star")
+let queryingWord, currentWord;
 
-// get url parameters
-const params = new URLSearchParams(document.location.search);
-const wordParam = params.get("w");
-console.log(wordParam)
-if (wordParam != null) {
-	searchInput.value = wordParam;
-	getWord();
-}
-
+getParams();
 searchInput.addEventListener("keyup", (e) => {
 	if (e.key == "Enter") getWord();
 })
@@ -22,26 +16,50 @@ printButton.addEventListener("click", () => {
 	window.print();
 })
 
-async function getWord() { 
-	searchInput.value = searchInput.value.trim();
-	if (searchInput.value.length === 0) return;
+function getParams() {
+	// get url parameters to find word
+	const params = new URLSearchParams(document.location.search);
+	const wordParam = params.get("w");
+	console.log(wordParam);
+	if (wordParam != null) {
+		searchInput.value = wordParam;
+		getWord();
+	}
+}
+
+async function getWord() {
+	queryingWord = searchInput.value.trim();
+	if (queryingWord === 0) return;
 	let data;
 	const startTime = Date.now();
-	await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + searchInput.value)
-		.then(async resp => {
+	await fetch(
+		"https://api.dictionaryapi.dev/api/v2/entries/en/" + queryingWord
+	)
+		.then(async (resp) => {
 			if (!resp.ok) {
-				tagline.innerText = (resp.status === 404) ? "Entered word not found." : "Unknown status code: " + resp.status;
+				alertEl.innerText =
+					resp.status === 404
+						? "Entered word '" + queryingWord + "' not found."
+						: "Unknown status code: " + resp.status;
 				return;
 			}
-			await resp.json().then(json => {
+			await resp.json().then((json) => {
 				data = json;
 				const timeElapsed = Date.now() - startTime;
-				tagline.innerText = "Word found in " + timeElapsed + " milliseconds!"
-			})
+				alertEl.innerText = "Word found in " + timeElapsed + " milliseconds!";
+			});
 		})
-		.catch(err => {
-			tagline.innerText = "Unknown error occurred. " + err;
+		.catch((err) => {
+			alertEl.innerText = "Unknown error occurred. " + err;
 		});
+	
+	currentWord = queryingWord;
+	
+	// set url parameters to current word
+	const url = new URL(location);
+	url.searchParams.set("w", queryingWord);
+	window.history.pushState({}, "", url);
+
 	// escape function if request failed
 	if (data === undefined) return;
 	console.log(data);
@@ -69,7 +87,9 @@ async function getWord() {
 			const definitionList = document.createElement("ol");
 			for (definition of meaning.definitions) {
 				const definitionItem = document.createElement("li");
-				definitionItem.innerHTML = definition.definition + (definition.example?("<br><i>" +definition.example + "</i>"):"");
+				definitionItem.innerHTML =
+					definition.definition +
+					(definition.example ? "<br><i>" + definition.example + "</i>" : "");
 				definitionList.appendChild(definitionItem);
 			}
 
@@ -77,22 +97,23 @@ async function getWord() {
 			wordDiv.appendChild(meaningDiv);
 		}
 		mainEl.appendChild(wordDiv);
-	};
+	}
 
-	// set url parameters to current word
-	const url = new URL(location);
-	url.searchParams.set("w", searchInput.value);
-	window.history.pushState({}, "", url);
 	let hist = localStorage.getItem("hist");
 	if (hist === null) {
-		localStorage.setItem("hist", searchInput.value);
+		localStorage.setItem("hist", queryingWord);
 	} else {
 		hist = hist.split(",");
-		if (!hist.includes(searchInput.value)) {
-			hist.unshift(searchInput.value);
+		if (!hist.includes(queryingWord)) {
+			hist.unshift(queryingWord);
 			localStorage.setItem("hist", hist.join(","));
 		}
 	}
+
+	starButton.classList.remove("hidden");
+	starButton.addEventListener("click", () => {
+		starButton.innerText = (starButton.innerText === "Star") ? "Unstar" : "Star";
+	})
 }
 
 async function share() {
