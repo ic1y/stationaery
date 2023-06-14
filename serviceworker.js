@@ -29,8 +29,8 @@ self.addEventListener("install", (event) => {
 			// response isn't fulfilled from the HTTP cache; i.e., it will be
 			// from the network.
 			await cache.add(new Request(OFFLINE_URL, { cache: "reload" }));
-			// await cache.add(new Request("offline.css", { cache: "reload" }));
-			// await cache.add(new Request("offline.js", { cache: "reload" }));
+			await cache.add(new Request("offline.css", { cache: "reload" }));
+			await cache.add(new Request("offline.js", { cache: "reload" }));
 		})()
 	);
 	// Force the waiting service worker to become the active service worker.
