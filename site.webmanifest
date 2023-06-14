@@ -18,7 +18,9 @@
             "type": "image/png"
         }
     ],
+    "theme_color": "#000000",
     "background_color": "#000000",
     "start_url": "https://stationaery.vercel.app",
-    "display": "standalone"
+    "display": "standalone",
+    "orientation": "any"
 }
